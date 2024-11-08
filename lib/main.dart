@@ -13,6 +13,7 @@ Future main() async {
       useMaterial3: true,
     ),
     home: const MyHomePage(),
-    routes: {MovieDetailPage.routeName: (context) => MovieDetailPage()},
+    routes: {MovieDetailPage.routeName: (context) => const MovieDetailPage()},
+    debugShowCheckedModeBanner: false,
   ));
 }
