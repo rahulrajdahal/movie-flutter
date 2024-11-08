@@ -1,16 +1,70 @@
-# movie_flutter
+# [Movie Flutter](https://github.com/rahulrajdahal/movie-flutter). Browse the movies your love
 
-A new Flutter project.
+Browse through movies.
 
-## Getting Started
+- Now playing movies
+- Top rated movies.
+- Get all the details about the movie.
 
-This project is a starting point for a Flutter application.
+## Preview
 
-A few resources to get you started if this is your first Flutter project:
+<a href="https://github.com/rahulrajdahal/movie-flutter">
+<img src="./screenshots/home.jpg?raw=true" width="300" height="620"/>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="./screenshots/detail.jpg?raw=true" width="300" height="620"/>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🏗 Development Guide
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 1. clone the repository
+
+```sh
+git clone https://github.com/rahulrajdahal/movie-flutter.git
+```
+
+### 2. Install Dependencies
+
+#### npm
+
+```sh
+cd movie_flutter && flutter pub get
+```
+
+### 3. Connect to your API 💾
+
+Create a copy of **.env** file and update the key value pairs.
+
+### 4. Run in debug mode
+
+```sh
+flutter run --debug
+```
+
+#### OR
+
+### Run in Production
+
+```sh
+flutter run --release
+```
+
+## 🚀 Project Structure
+
+Inside of project [movie_flutter](https://github.com/rahulrajdahal/movie-flutter), you'll see the following folders and files:
+
+```text
+/
+├── screenshots/
+|   └── screenshot.jpg
+├── lib/
+|   ├── models/
+│   │   └── model.dart
+|   ├── pages/
+│   │   └── page.dart
+|   ├── widgets/
+│   │   └── widget.dart
+│   ├── main.dart
+│   └── services.dart
+├── .env.example
+└── pubspec.yaml
+```
