@@ -11,7 +11,6 @@ Browse through movies.
 <a href="https://github.com/rahulrajdahal/movie-flutter">
 <img src="./screenshots/home.jpg?raw=true" width="300" height="620"/>
 </a>
-&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="./screenshots/detail.jpg?raw=true" width="300" height="620"/>
 
 ![Movie Flutter](./screenshots/linux.png)
