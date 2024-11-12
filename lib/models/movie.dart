@@ -4,18 +4,23 @@
 
 import 'dart:convert';
 
-Movie movieFromJson(String str) => Movie.fromJson(json.decode(str));
+NowPlaying nowPlayingFromJson(String str) =>
+    NowPlaying.fromJson(json.decode(str));
 
-String movieToJson(Movie data) => json.encode(data.toJson());
+String nowPlayingToJson(NowPlaying data) => json.encode(data.toJson());
 
-class Movie {
+TopRated topRatedFromJson(String str) => TopRated.fromJson(json.decode(str));
+
+String topRatedToJson(TopRated data) => json.encode(data.toJson());
+
+class NowPlaying {
   Dates dates;
   int page;
-  List<Result> results;
+  List<Movie> results;
   int totalPages;
   int totalResults;
 
-  Movie({
+  NowPlaying({
     required this.dates,
     required this.page,
     required this.results,
@@ -23,17 +28,46 @@ class Movie {
     required this.totalResults,
   });
 
-  factory Movie.fromJson(Map<String, dynamic> json) => Movie(
+  factory NowPlaying.fromJson(Map<String, dynamic> json) => NowPlaying(
         dates: Dates.fromJson(json["dates"]),
         page: json["page"],
         results:
-            List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+            List<Movie>.from(json["results"].map((x) => Movie.fromJson(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );
 
   Map<String, dynamic> toJson() => {
         "dates": dates.toJson(),
+        "page": page,
+        "results": List<dynamic>.from(results.map((x) => x.toJson())),
+        "total_pages": totalPages,
+        "total_results": totalResults,
+      };
+}
+
+class TopRated {
+  int page;
+  List<Movie> results;
+  int totalPages;
+  int totalResults;
+
+  TopRated({
+    required this.page,
+    required this.results,
+    required this.totalPages,
+    required this.totalResults,
+  });
+
+  factory TopRated.fromJson(Map<String, dynamic> json) => TopRated(
+        page: json["page"],
+        results:
+            List<Movie>.from(json["results"].map((x) => Movie.fromJson(x))),
+        totalPages: json["total_pages"],
+        totalResults: json["total_results"],
+      );
+
+  Map<String, dynamic> toJson() => {
         "page": page,
         "results": List<dynamic>.from(results.map((x) => x.toJson())),
         "total_pages": totalPages,
@@ -63,7 +97,7 @@ class Dates {
       };
 }
 
-class Result {
+class Movie {
   bool adult;
   String backdropPath;
   List<int> genreIds;
@@ -79,7 +113,7 @@ class Result {
   double voteAverage;
   int voteCount;
 
-  Result({
+  Movie({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -96,7 +130,7 @@ class Result {
     required this.voteCount,
   });
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
+  factory Movie.fromJson(Map<String, dynamic> json) => Movie(
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
