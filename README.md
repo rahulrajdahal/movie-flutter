@@ -14,6 +14,8 @@ Browse through movies.
 &nbsp;&nbsp;&nbsp;&nbsp;
 <img src="./screenshots/detail.jpg?raw=true" width="300" height="620"/>
 
+![Movie Flutter](./screenshots/linux.png)
+
 ## 🏗 Development Guide
 
 ### 1. clone the repository
