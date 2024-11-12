@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:movie_flutter/models/movie.dart';
 import 'package:movie_flutter/services.dart';
@@ -42,17 +44,25 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
                 } else {
                   return SizedBox(
                     height: getProportionateScreenHeight(400),
-                    child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return MovieCard(
-                              movie: snapshot.data!.results[index]);
-                        },
-                        separatorBuilder: (context, index) {
-                          return SizedBox(
-                              width: getProportionateScreenWidth(10));
-                        },
-                        itemCount: 10),
+                    child: ScrollConfiguration(
+                      behavior: ScrollConfiguration.of(context)
+                          .copyWith(dragDevices: {
+                        PointerDeviceKind.mouse,
+                        PointerDeviceKind.touch,
+                        PointerDeviceKind.trackpad,
+                      }),
+                      child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return MovieCard(
+                                movie: snapshot.data!.results[index]);
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(
+                                width: getProportionateScreenWidth(10));
+                          },
+                          itemCount: 10),
+                    ),
                   );
                 }
               } else {
