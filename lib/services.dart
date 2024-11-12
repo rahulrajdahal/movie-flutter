@@ -1,17 +1,32 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:movie_flutter/models/movie.dart';
 
-Future<Movie> getNowPlayingMovies() async {
+Future<NowPlaying> getNowPlayingMovies() async {
+  final response = await http.get(
+      Uri.https(dotenv.env['MOVIE_URL']!, '3/movie/now_playing'),
+      headers: {
+        'accept': 'application/json',
+        'authorization': "Bearer ${dotenv.env['MOVIE_API_KEY']}"
+      });
+
+  if (response.statusCode == 200) {
+    return nowPlayingFromJson(response.body);
+  } else {
+    throw Exception('Failed to get now playing movies');
+  }
+}
+
+Future<TopRated> getTopRatedMovies() async {
   final response = await http
-      .get(Uri.https('api.themoviedb.org', '3/movie/now_playing'), headers: {
+      .get(Uri.https(dotenv.env['MOVIE_URL']!, '3/movie/top_rated'), headers: {
     'accept': 'application/json',
-    'authorization':
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNzQ5MzU1ZTQ2Y2EzNjM2OTQwMjhhNDIzOTIxOWZhOSIsIm5iZiI6MTczMDgyNzA0Mi45MjE2NjU0LCJzdWIiOiI1ZGQ5NTMwYzEyYWFiYzAwMTE5MTA2ODYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CX3mWQJAHEzdgUO33FVk2ux3S2sLjsW3Gfo1S3fZt50'
+    'authorization': "Bearer ${dotenv.env['MOVIE_API_KEY']}"
   });
 
   if (response.statusCode == 200) {
-    return movieFromJson(response.body);
+    return topRatedFromJson(response.body);
   } else {
-    throw Exception('Failed to get now playing movies');
+    throw Exception('Failed to get top rated movies');
   }
 }
